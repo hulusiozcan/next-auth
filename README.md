@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextAuth + Auth0 + Next.js Demo
 
-## Getting Started
 
-First, run the development server:
+
+NextAuth.js ve Auth0 kullanarak OAuth kimlik doğrulama ile JWT tabanlı oturum yönetimi sunan, Next.js App Router tabanlı bir örnek proje.
+
+
+
+## Özellikler
+
+
+
+- Auth0 OAuth entegrasyonu
+
+- JWT tabanlı session yönetimi
+
+- Rol bazlı yetkilendirme (admin, user)
+
+- Middleware ile korunan sayfalar (dashboard, admin)
+
+- TailwindCSS ve shadcn/ui ile modern arayüz
+
+
+
+---
+
+
+
+## Kurulum
+
+
+
+1.  **Projeyi klonlayın:**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+git clone https://github.com/hulusiozcan/next-auth.git
+
+cd next-auth
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  **Bağımlılıkları yükleyin:**
 
-## Learn More
+```bash
 
-To learn more about Next.js, take a look at the following resources:
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# veya
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+yarn install
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+3.  **Ortam değişkenlerini ayarlayın:**
+
+-  `.env.example` dosyasını kopyalayın:
+
+```bash
+
+cp .env.example .env.local
+
+```
+
+-  `.env.local` dosyasındaki gerekli alanları doldurun (Auth0 ayarları için aşağıya bakınız).
+
+
+
+---
+
+
+
+## Auth0 Yapılandırması
+
+
+
+1.  **Auth0 hesabı oluşturun ve uygulama ekleyin:**
+
+-  [auth0.com](https://auth0.com) adresinden hesap oluşturun.
+
+- Applications bölümünden yeni bir Regular Web Application oluşturun.
+
+
+
+2.  **Aşağıdaki ayarları uygulamanıza tanımlayın:**
+
+-  **Allowed Callback URLs:**
+
+```
+
+http://localhost:3000/api/auth/callback/auth0
+
+```
+
+-  **Allowed Logout URLs:**
+
+```
+
+http://localhost:3000
+
+```
+
+-  **Allowed Web Origins:**
+
+```
+
+http://localhost:3000
+
+```
+
+
+
+3.  **Aldığınız bilgileri `.env.local` dosyanıza ekleyin:**
+
+-  `AUTH0_DOMAIN`
+
+-  `AUTH0_CLIENT_ID`
+
+-  `AUTH0_CLIENT_SECRET`
+
+-  `AUTH0_SECRET` (güçlü bir secret üretin, örnek: `openssl rand -hex 32`)
+
+-  `APP_BASE_URL` → `http://localhost:3000` (veya kendi adresiniz)
+
+
+
+---
+
+
+
+## Projeyi Başlatma
+
+
+
+```bash
+
+npm  run  dev
+
+# veya
+
+yarn  dev
+
+```
+
+
+
+Uygulamaya [http://localhost:3000](http://localhost:3000) adresinden erişebilirsiniz.
+
+
+
+---
+
+
+
+## Teknik Notlar
+
+
+
+-  **12Factor:** Yapılandırmalar environment değişkenlerinde tutulur, kod tabanı statelesstir, bağımlılıklar package manager ile yönetilir.
+
+-  **SOLID:** Kodda component/fonksiyon bazlı ayrım ve tek sorumluluk prensibi uygulanmıştır.
+
+-  **JWT:** Auth0’dan dönen id_token içindeki rol, session’a eklenir.
+
+-  **Rol bazlı yetkilendirme:**
+
+-  `/admin`: Sadece admin rolüne sahip kullanıcılar erişebilir.
+
+-  `/dashboard`: Giriş yapmış tüm kullanıcılar erişebilir.
+
+
+
+---
