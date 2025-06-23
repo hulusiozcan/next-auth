@@ -1,5 +1,7 @@
+
 # NextAuth + Auth0 + Next.js Demo
 
+[➡️ Test Hesapları ve Ek Bilgiler](#test-hesapları-ve-ek-bilgiler) • [Canlı Demo](https://next-auth-lilac-zeta.vercel.app/)
 
 
 NextAuth.js ve Auth0 kullanarak OAuth kimlik doğrulama ile JWT tabanlı oturum yönetimi sunan, Next.js App Router tabanlı bir örnek proje.
@@ -173,5 +175,20 @@ Uygulamaya [http://localhost:3000](http://localhost:3000) adresinden erişebilir
 -  `/dashboard`: Giriş yapmış tüm kullanıcılar erişebilir.
 
 
+
+---
+
+## Test Hesapları ve Ek Bilgiler
+
+- **Canlı Demo:** Uygulamanın canlı versiyonu [next-auth demo](https://next-auth-lilac-zeta.vercel.app/) adresindedir.
+- **Test Kullanıcıları:**
+  - Standart Kullanıcı:  
+    - E-posta: `testdefaultuser@example.com`  
+    - Şifre: `Testdefaultuser12`
+  - Admin Kullanıcı:  
+    - E-posta: `testadmin@example.com`  
+    - Şifre: `Testadmin12`
+- Auth0 ile giriş yapan tüm kullanıcılar varsayılan olarak standart kullanıcıdır.
+- Kullanıcılara admin rolü atamak için Auth0 panelinde **User Management > Users > Assign Roles** adımlarını izleyebilirsiniz.
 
 ---
