@@ -1,3 +1,6 @@
+import AuthButtons from "@/components/AuthButtons";
+import AuthProvider from "@/app/providers";
+
 export default function LoginPage() {
     return (
         <main className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center">
@@ -13,6 +16,9 @@ export default function LoginPage() {
                 </p>
                 {/* Giriş Butonları */}
                 <div className="flex flex-col gap-4 w-full mb-6">
+                    <AuthProvider>
+                        <AuthButtons />
+                    </AuthProvider>
                 </div>
                 {/* Genel bilgiler */}
                 <p className="text-xs text-center text-gray-500 mb-2">
